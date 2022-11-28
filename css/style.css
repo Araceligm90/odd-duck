@@ -1,1 +1,32 @@
+/* Color palete:
 
+#219ebc - pool blue background
+#fb8500 - orange title
+#ffb703 - yellow
+#023047 - dark blue
+#8ecae6 - light blue */
+
+
+body {
+    background-color: #219ebc;
+}
+
+h1 {
+    padding: 1rem;
+    text-align: center;
+    font-size: 50px;
+    background-color: #fb8500;
+    color: #023047; 
+    border-radius: 20%;
+    margin: 2rem;
+}
+
+.logo {
+    border: none;
+}
+
+.imagesection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+}
