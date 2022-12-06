@@ -4,7 +4,8 @@
 #fb8500 - orange title
 #ffb703 - yellow
 #023047 - dark blue
-#8ecae6 - light blue */
+#8ecae6 - light blue 
+#9BD0F5 - lighter blue*/
 
 
 body {
@@ -15,9 +16,11 @@ h1 {
     padding: 1rem;
     text-align: center;
     font-size: 50px;
-    background-color: #fb8500;
+    background-color:#8ecae6;
     color: #023047; 
-    border-radius: 20%;
+    border-radius: 130px;
+    border: 10px solid;
+    border-color: #ffb703;
     margin: 2rem;
 }
 
@@ -25,8 +28,18 @@ h1 {
     border: none;
 }
 
+p {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
 .imagesection {
     display: flex;
     flex-direction: row;
     justify-content: space-around;    
+}
+
+canvas {
+    padding: 60px;
 }

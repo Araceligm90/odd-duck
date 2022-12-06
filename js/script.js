@@ -50,7 +50,7 @@ function renderProducts() {
     let thirdProduct = productList[getRandomIndex()];
 
     // we only move on when firstProduct and secondProduct are different //
-    while (firstProduct === secondProduct || firstProduct === thirdProduct || secondProduct === thirdProduct ) {
+    while (firstProduct === secondProduct || firstProduct === thirdProduct || secondProduct === thirdProduct) {
         secondProduct = productList[getRandomIndex()];
         thirdProduct = productList[getRandomIndex()];
     }
@@ -64,7 +64,7 @@ function renderProducts() {
     image2.alt = secondProduct.name;
     image2.title = secondProduct.name;
     image3.src = thirdProduct.src;
-    image3.alt = thirdProduct.name;    
+    image3.alt = thirdProduct.name;
     image3.title = thirdProduct.name;
 
     // increment views //
@@ -76,7 +76,7 @@ function renderProducts() {
 // event handler //
 // what happens when a user cicks a product: 1. increments product's .clicks, 2. render 3 nwe products //
 function handleProductClick(event) {
-    clicks ++;
+    clicks++;
     // the event object knows about the event, and the element targeted //
 
     // how to imcrement the correct product's clicks? //
@@ -100,13 +100,62 @@ function handleProductClick(event) {
 function viewResults(event) {
     let ul = document.querySelector('ul');
     // make one 'li' for each product inside products //
-        for (let i = 0; i < productList.length; i++) {
-            let li = document.createElement('li');
-            li.innerText = `${productList[i].name} was viewed ${productList[i].views} times, and was clicked ${productList[i].clicks} times`;
-            ul.appendChild(li);
-        } 
+    for (let i = 0; i < productList.length; i++) {
+        let li = document.createElement('li');
+        li.innerText = `${productList[i].name} was viewed ${productList[i].views} times, and was clicked ${productList[i].clicks} times`;
+        ul.appendChild(li);
+    }
 }
 
+// get my product list into an array with foor loop
+function renderChart() {
+
+let productArray = [];
+for (let i = 0; i < productList.length; i++) {
+  productArray.push(productList[i].name);
+}
+
+// console.log('the productArray are:', productArray)
+
+let productClicks = [];
+for (let i = 0; i < productList.length; i++) {
+  productClicks.push(productList[i].clicks);
+}
+
+let productViews = [];
+for (let i = 0; i < productList.length; i++) {
+  productViews.push(productList[i].views);
+}
+
+const ctx = document.getElementById('myChart');
+
+// this code comes from chartsjs.org 'getting started'
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: productArray,
+    datasets: [{
+      label: '# of votes per product',
+      data: productClicks,
+      backgroundColor: '#9BD0F5',
+      borderWidth: 1
+    }, {
+      label: '# of views per product',
+      data: productViews, 
+      backgroundColor: '#023047',
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+}
+
+resultsButton.removeEventListener('click', viewResults);
 
 // on page load //
 
@@ -114,4 +163,6 @@ image1.addEventListener('click', handleProductClick)
 image2.addEventListener('click', handleProductClick)
 image3.addEventListener('click', handleProductClick)
 resultsButton.addEventListener('click', viewResults);
+resultsButton.addEventListener('click', renderChart);
 renderProducts();
+
